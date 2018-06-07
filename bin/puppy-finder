@@ -1,5 +1,0 @@
-#!/usr/bin/env ruby
-
-require './lib/puppy_finder'
-
-PuppyFinder::CLI.new.greeting

@@ -1,6 +1,5 @@
-class PuppyFinder::CLI
-
-  def greeting
+class PuppyFinder
+  def call
     puts "Hello, welcome to puppy finder! Please choose a breed to continue."
     # Lists dog breeds
     # Gets user input (1-10)
@@ -11,7 +10,6 @@ class PuppyFinder::CLI
   end
 
   def list_breeds
-    #list some breeds here
+    # list some breeds here
   end
-
 end
