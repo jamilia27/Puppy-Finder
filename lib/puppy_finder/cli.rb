@@ -1,15 +1,26 @@
 class PuppyFinder
   def call
-    puts "Hello, welcome to puppy finder! Please choose a breed to continue."
-    # Lists dog breeds
-    # Gets user input (1-10)
+    greeting
+    Scraper.breeds
+    user_input
     puts "You've selected *breed variable here*. Select a puppy to learn more!"
     # Lists adoptable puppies
     # Gets user input
     # Reveal specific puppy bio
   end
 
-  def list_breeds
-    # list some breeds here
+  def greeting
+    puts "Hello, welcome to puppy finder! Pease select a breed to continue:"
+  end
+
+  def user_input
+    gets.strip
+  end
+
+  def select_puppy(puppy_breed)
+  end
+
+  def read_bio(puppy_name)
+
   end
 end

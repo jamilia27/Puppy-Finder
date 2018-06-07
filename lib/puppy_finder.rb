@@ -1,5 +1,5 @@
 require 'nokogiri'
-require 'uri'
+require 'open-uri'
 require 'pry'
 
 require_relative 'puppy_finder/cli'
