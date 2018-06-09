@@ -5,4 +5,4 @@ require 'puppy_finder'
 
 PuppyPedia.new.call
 
-# Scraper.list_breeds
+# Scraper.scrape_all_breeds
