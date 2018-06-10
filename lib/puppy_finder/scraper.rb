@@ -9,7 +9,12 @@ class Scraper
 
     bio = doc.css('div.row.full-width.breed-desc').text.split("\n").delete_if{|x| x == "" || x.start_with?("About")}
 
-    puts bio
+
+    if doc == []
+      puts "Sorry, this breed does not have a bio available"
+    else
+      puts bio
+    end
   end
 
   def self.scrape_all_breeds

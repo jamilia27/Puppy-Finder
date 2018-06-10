@@ -78,7 +78,9 @@ class PuppyPedia
       when "T"
         breeds_by_first_letter("T")
       when "U"
-        breeds_by_first_letter("U")
+        puts "Sorry there are no breeds starting with U :("
+        puts "Please try again or type 'exit'"
+        list_breeds
       when "V"
         breeds_by_first_letter("V")
       when "W"
@@ -97,7 +99,7 @@ class PuppyPedia
         puts "Hm, not sure what you mean..."
         puts "Please try again or type 'exit'"
         list_breeds
-      end
+    end
   end
 
   def goodbye
@@ -109,17 +111,27 @@ class PuppyPedia
   end
 
   def get_bio(breed)
-    Scraper.scrape_bio(breed)
+    begin
+      Scraper.scrape_bio(breed)
+    rescue
+      page_break
+      puts "Sorry, it doesn't look like you entered a breed on the list. Please try again."
+      goodbye
+    end
   end
 
   def read_bio
-    user_input = nil
-    puts "Please type the name of the dog you would like to learn about or 'exit'"
-    user_input = gets.strip.downcase
-    if user_input == "exit"
-      goodbye
-    else
-      get_bio(user_input)
+    puts ""
+    page_break
+      puts "Please type the name of the dog you would like to learn about or 'exit'"
+      user_input = gets.strip.downcase
+        if user_input == "exit"
+          goodbye
+      # how do you check to see if a breed name is valid?
+      # elsif statement for if the breed does not exist
+      # type another puppy or exit "If you would like to try again, type yes. Or type no to exit."
+      else
+       get_bio(user_input)
     end
   end
 
