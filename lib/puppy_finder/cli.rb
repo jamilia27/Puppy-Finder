@@ -6,19 +6,11 @@ class PuppyPedia
     greeting
     list_breeds
     read_bio
-    # Scraper.list_breeds
-    # List breeds within range
-    # User selects a breed
-    # Scraper.read_bio  (breed // USER INPUT GOES HERE)
-    # Go back or exit
-  end
-
-  def page_break
-    puts "*************************"
+    goodbye
   end
 
   def greeting
-    puts "Hello friend, welcome to PuppyPedia! Pease enter the first letter of the breed you would like to learn about!"
+    puts "Hello, welcome to PuppyPedia! Pease enter the first letter of the breed you would like to learn about:"
     puts ""
     @breeds = Scraper.scrape_all_breeds
   end
@@ -102,7 +94,37 @@ class PuppyPedia
     end
   end
 
+  def get_bio(breed)
+    begin
+      Scraper.scrape_bio(breed)
+    rescue
+      page_break
+      puts "Sorry, it doesn't look like the breed you entered has a bio available. Please try again or type 'exit'"
+      read_bio
+    end
+  end
+
+  def read_bio
+    puts ""
+    page_break
+    puts "Please type the name of the breed you would like to learn about or 'exit'"
+    puts ""
+    page_break
+    user_input = gets.strip.downcase
+      if user_input == "exit"
+        goodbye
+      else
+        get_bio(user_input)
+    end
+  end
+
+  def page_break
+    puts "*************************"
+  end
+
   def goodbye
+    puts ""
+    puts "Thanks for using PuppyPedia!"
     puts "Come back soon to learn about more puppies!!!"
   end
 
@@ -110,34 +132,4 @@ class PuppyPedia
     system "clear"
   end
 
-  def get_bio(breed)
-    begin
-      Scraper.scrape_bio(breed)
-    rescue
-      page_break
-      puts "Sorry, it doesn't look like you entered a breed on the list. Please try again."
-      goodbye
-    end
-  end
-
-  def read_bio
-    puts ""
-    page_break
-      puts "Please type the name of the dog you would like to learn about or 'exit'"
-      user_input = gets.strip.downcase
-        if user_input == "exit"
-          goodbye
-      # how do you check to see if a breed name is valid?
-      # elsif statement for if the breed does not exist
-      # type another puppy or exit "If you would like to try again, type yes. Or type no to exit."
-      else
-       get_bio(user_input)
-    end
-  end
-
-
-  # def list_breeds
-  #   input = nil
-  #   while input != exit
-  # end
 end
