@@ -9,10 +9,13 @@ class PuppyPedia
     goodbye
   end
 
+  def initialize
+    @breeds = Scraper.scrape_all_breeds
+  end
+
   def greeting
     puts "Hello, welcome to PuppyPedia! Pease enter the first letter of the breed you would like to learn about:"
     puts ""
-    @breeds = Scraper.scrape_all_breeds
   end
 
   def breeds_by_first_letter(letter)
