@@ -1,11 +1,15 @@
 class PuppyPedia
   attr_reader :breeds
 
+  Quit = Class.new(StandardError)
+
   def call
     fresh
     greeting
     list_breeds
     read_bio
+  rescue Quit
+  ensure
     goodbye
   end
 
@@ -35,13 +39,12 @@ class PuppyPedia
       # if it is Q, U, or Z
     # else
     if user_input == "EXIT"
-      goodbye
+      raise Quit
     elsif user_input.length == 1 && /[A-Z]/.match(user_input)
       if ["Q", "U", "Z"].include?(user_input)
         uh_oh
       else
         breeds_by_first_letter(user_input)
-
       end
     else
       uh_oh
@@ -135,7 +138,9 @@ class PuppyPedia
     puts ""
     page_break
     user_input = gets.strip.downcase
-    unless user_input == "exit"
+    if user_input == "exit"
+      raise Quit
+    else
       get_bio(user_input)
     end
   end
