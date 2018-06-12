@@ -29,73 +29,94 @@ class PuppyPedia
     user_input = nil
     puts ""
     user_input = gets.strip.upcase
-      case user_input
-      when "A"
-        breeds_by_first_letter("A")
-      when "B"
-        breeds_by_first_letter("B")
-      when "C"
-        breeds_by_first_letter("C")
-      when "D"
-        breeds_by_first_letter("D")
-      when "E"
-        breeds_by_first_letter("E")
-      when "F"
-        breeds_by_first_letter("F")
-      when "G"
-        breeds_by_first_letter("G")
-      when "H"
-        breeds_by_first_letter("H")
-      when "I"
-        breeds_by_first_letter("I")
-      when "J"
-        breeds_by_first_letter("J")
-      when "K"
-        breeds_by_first_letter("K")
-      when "L"
-        breeds_by_first_letter("L")
-      when "M"
-        breeds_by_first_letter("M")
-      when "N"
-        breeds_by_first_letter("N")
-      when "O"
-        breeds_by_first_letter("O")
-      when "P"
-        breeds_by_first_letter("P")
-      when "Q"
-        puts "Sorry there are no breeds starting with Q :("
-        puts "Please try again or type 'exit'"
-        list_breeds
-      when "R"
-        breeds_by_first_letter("R")
-      when "S"
-        breeds_by_first_letter("S")
-      when "T"
-        breeds_by_first_letter("T")
-      when "U"
-        puts "Sorry there are no breeds starting with U :("
-        puts "Please try again or type 'exit'"
-        list_breeds
-      when "V"
-        breeds_by_first_letter("V")
-      when "W"
-        breeds_by_first_letter("W")
-      when "X"
-        breeds_by_first_letter("X")
-      when "Y"
-        breeds_by_first_letter("Y")
-      when "Z"
-        puts "Sorry there are no breeds starting with Z :("
-        puts "Please try again or type 'exit'"
-        list_breeds
-      when "EXIT"
-        goodbye
+    # if EXIT
+    # if user_input.length == 1
+    # if user_input regex [A-Z]
+      # if it is Q, U, or Z
+    # else
+    if user_input == "EXIT"
+      goodbye
+    elsif user_input.length == 1 && /[A-Z]/.match(user_input)
+      if ["Q", "U", "Z"].include?(user_input)
+        uh_oh
       else
-        puts "Hm, not sure what you mean..."
-        puts "Please try again or type 'exit'"
-        list_breeds
+        breeds_by_first_letter(user_input)
+
+      end
+    else
+      uh_oh
     end
   end
+
+
+  #   elsif
+  #   case user_input
+  #   when "A"
+  #     breeds_by_first_letter("A")
+  #   when "B"
+  #     breeds_by_first_letter("B")
+  #   when "C"
+  #     breeds_by_first_letter("C")
+  #   when "D"
+  #     breeds_by_first_letter("D")
+  #   when "E"
+  #     breeds_by_first_letter("E")
+  #   when "F"
+  #     breeds_by_first_letter("F")
+  #   when "G"
+  #     breeds_by_first_letter("G")
+  #   when "H"
+  #     breeds_by_first_letter("H")
+  #   when "I"
+  #     breeds_by_first_letter("I")
+  #   when "J"
+  #     breeds_by_first_letter("J")
+  #   when "K"
+  #     breeds_by_first_letter("K")
+  #   when "L"
+  #     breeds_by_first_letter("L")
+  #   when "M"
+  #     breeds_by_first_letter("M")
+  #   when "N"
+  #     breeds_by_first_letter("N")
+  #   when "O"
+  #     breeds_by_first_letter("O")
+  #   when "P"
+  #     breeds_by_first_letter("P")
+  #   when "Q"
+  #     puts "Sorry there are no breeds starting with Q :("
+  #     puts "Please try again or type 'exit'"
+  #     list_breeds
+  #   when "R"
+  #     breeds_by_first_letter("R")
+  #   when "S"
+  #     breeds_by_first_letter("S")
+  #   when "T"
+  #     breeds_by_first_letter("T")
+  #   when "U"
+  #     puts "Sorry there are no breeds starting with U :("
+  #     puts "Please try again or type 'exit'"
+  #     list_breeds
+  #   when "V"
+  #     breeds_by_first_letter("V")
+  #   when "W"
+  #     breeds_by_first_letter("W")
+  #   when "X"
+  #     breeds_by_first_letter("X")
+  #   when "Y"
+  #     breeds_by_first_letter("Y")
+  #   when "Z"
+  #     puts "Sorry there are no breeds starting with Z :("
+  #     puts "Please try again or type 'exit'"
+  #     list_breeds
+  #   when "EXIT"
+  #     goodbye
+  #   else
+  #     puts "Hm, not sure what you mean..."
+  #     puts "Please try again or type 'exit'"
+  #     list_breeds
+  #   end
+  # end
 
   def get_bio(breed)
     begin
@@ -114,15 +135,19 @@ class PuppyPedia
     puts ""
     page_break
     user_input = gets.strip.downcase
-      if user_input == "exit"
-        goodbye
-      else
-        get_bio(user_input)
+    unless user_input == "exit"
+      get_bio(user_input)
     end
   end
 
   def page_break
     puts "*************************"
+  end
+
+  def uh_oh
+    puts "Sorry there are no breeds starting with that letter :("
+    puts "Please try again or type 'exit'"
+    list_breeds
   end
 
   def goodbye
